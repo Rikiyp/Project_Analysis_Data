@@ -50,8 +50,8 @@ min_date = df["order_purchase_timestamp"].min()
 max_date = df["order_purchase_timestamp"].max()
 
 with st.sidebar:
-#    st.image("assets/logo_qshop.jpg")
-   start_date, end_date = st.date_input(
+    st.image("https://raw.githubusercontent.com/Rikiyp/Project_Analysis_Data/refs/heads/main/logostickers%20outline.png")
+    start_date, end_date = st.date_input(
         label='Time Span',min_value=min_date,
         max_value=max_date,
         value=[min_date, max_date]
@@ -64,6 +64,9 @@ main_df = df[(df["order_approved_at"] >= str(start_date)) &
 product_categories_state_df = create_product_categories_state_df(main_df)
 payment_type_to_oder_df = create_payment_type_to_oder_df(main_df)
 rfm_df = create_rfm_df(main_df,recent_date)
+
+st.title("Welcome to Infinite Shop Dashboard!")
+st.subheader("Purchase Count by State and Product Category")
 
 colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
@@ -82,6 +85,7 @@ ax.tick_params(axis='x', labelsize=35)
 ax.tick_params(axis='y', labelsize=30)
 st.pyplot(fig)
 
+st.subheader("Distribution by Payment Methods")
 
 payment_types = ['credit_card', 'boleto', 'voucher', 'debit_card', 'not_defined']
 order_counts = [76505, 19784, 3866, 1528, 3]
